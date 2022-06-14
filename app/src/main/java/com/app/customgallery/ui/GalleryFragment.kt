@@ -7,7 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.app.customgallery.databinding.FragmentGalleryBinding
+import com.app.customgallery.viewmodel.MainViewModel
+import com.app.customgallery.viewmodel.MyViewModelFactory
 import com.permissionx.guolindev.PermissionX
 
 
@@ -31,6 +35,12 @@ class GalleryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         checkStoragePermission()
+
+        val myViewModelFactory = MyViewModelFactory(requireActivity().application)
+        val viewModel = ViewModelProvider(this, myViewModelFactory).get(MainViewModel::class.java)
+        viewModel.myGallery.observe(viewLifecycleOwner) {
+            binding.tv.text = it.toString()
+        }
     }
 
 
