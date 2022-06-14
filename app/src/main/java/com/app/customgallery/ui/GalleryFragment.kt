@@ -7,8 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
+import com.app.customgallery.adapter.FolderViewAdapter
 import com.app.customgallery.databinding.FragmentGalleryBinding
 import com.app.customgallery.viewmodel.MainViewModel
 import com.app.customgallery.viewmodel.MyViewModelFactory
@@ -39,10 +40,10 @@ class GalleryFragment : Fragment() {
         val myViewModelFactory = MyViewModelFactory(requireActivity().application)
         val viewModel = ViewModelProvider(this, myViewModelFactory).get(MainViewModel::class.java)
         viewModel.myGallery.observe(viewLifecycleOwner) {
-            binding.tv.text = it.toString()
+            binding.rvGallery.layoutManager = GridLayoutManager(requireContext(), 2)
+            binding.rvGallery.adapter = FolderViewAdapter(it)
         }
     }
-
 
     private fun checkStoragePermission() {
         val permissions = ArrayList<String>()
