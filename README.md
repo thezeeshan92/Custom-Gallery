@@ -43,3 +43,15 @@ There are a few ways to open this project.
 
 1. Run `git clone https://github.com/thezeeshan92/Custom-Gallery.git`
 2. Android Studio -> File -> Open
+
+
+## ScreenShots
+
+Gallery Fragment displays all folders and the number of images and videos it contains
+
+![Screenshot_20220615-171209](https://user-images.githubusercontent.com/12368592/173824474-8c51b9fb-6230-4238-a1b1-c8fe8ac06e7d.jpg)
+
+Displays all images in a given folder, in this case "All Images"
+
+![Screenshot_20220615-171218](https://user-images.githubusercontent.com/12368592/173824613-2d3ebc23-0e1e-4af3-a88a-ab97a73631ac.jpg)
+
