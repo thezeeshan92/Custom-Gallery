@@ -54,9 +54,12 @@ class GalleryFragment : Fragment() {
     }
 
     private fun setUpObservers() {
+        binding.progressBar.visibility = View.VISIBLE
         val myViewModelFactory = MyViewModelFactory(requireActivity().application)
         val viewModel = ViewModelProvider(this, myViewModelFactory).get(MainViewModel::class.java)
         viewModel.myGallery.observe(viewLifecycleOwner) { it ->
+            binding.progressBar.visibility = View.GONE
+
             val galleryData = it
             binding.rvGallery.layoutManager = GridLayoutManager(requireContext(), 2)
             binding.rvGallery.adapter = FolderViewAdapter(galleryData) {
