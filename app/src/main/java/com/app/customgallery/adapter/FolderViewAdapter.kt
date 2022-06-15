@@ -9,8 +9,10 @@ import com.app.customgallery.databinding.LayoutFolderViewBinding
 import com.app.customgallery.extensions.loadWithThumbnail
 import com.app.customgallery.models.FolderModel
 
-class FolderViewAdapter constructor(private val folderModels: List<FolderModel>) :
-    RecyclerView.Adapter<FolderViewAdapter.ViewHolder>() {
+class FolderViewAdapter constructor(
+    private val folderModels: List<FolderModel>,
+    private val onItemClick: (position: Int) -> Unit
+) : RecyclerView.Adapter<FolderViewAdapter.ViewHolder>() {
 
     // Inflates the item views
     override fun onCreateViewHolder(
@@ -32,6 +34,7 @@ class FolderViewAdapter constructor(private val folderModels: List<FolderModel>)
         holder.binding.tvFolderName.text = folderModels[i].folderName
         holder.binding.tvFolderSize.text = folderModels[i].folderItems.size.toString()
         holder.binding.folderPic.loadWithThumbnail(folderModels[i].folderItems[0].path)
+        holder.itemView.setOnClickListener { onItemClick(i) }
     }
 
 
