@@ -90,9 +90,11 @@ class GalleryDataSource(private val contentResolver: ContentResolver) {
                 }
 
                 if (index == -1) {
-                    galleryData.add(FolderModel(folderId, folderName, listOf(folderItemModel)))
+                    val myList: MutableList<FolderItemModel> = mutableListOf()
+                    myList.add(folderItemModel)
+                    galleryData.add(FolderModel(folderId, folderName, myList))
                 } else {
-                    galleryData[index].folderItems.toMutableList().add(folderItemModel)
+                    galleryData[index].folderItems.add(folderItemModel)
                 }
 
                 cursor.moveToNext()
